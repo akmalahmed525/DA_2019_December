@@ -8,36 +8,44 @@ import json
 
 from loguru import logger
 
+
 def remove_key(d, key):
+    """
+        This function is used to remove the key from a python dictionary.
+    """
     r = dict(d)
     del r[key]
     return r
 
+
 def refine_data(extracted_data):
-    allowed_keys = [
-        "id",
-        "case_number",
-        "date",
-        "block",
-        "iucr",
-        "primary_type",
-        "description",
-        "location_description",
-        "arrest",
-        "domestic",
-        "beat",
-        "district",
-        "ward",
-        "community_area",
-        "fbi_code",
-        "x_coordinate",
-        "y_coordinate",
-        "year",
-        "updated_on",
-        "latitude",
-        "longitude",
-        "location",
-    ]
+    """
+        This function is used to refine the data array
+    """
+    # allowed_keys = [
+    #     "id",
+    #     "case_number",
+    #     "date",
+    #     "block",
+    #     "iucr",
+    #     "primary_type",
+    #     "description",
+    #     "location_description",
+    #     "arrest",
+    #     "domestic",
+    #     "beat",
+    #     "district",
+    #     "ward",
+    #     "community_area",
+    #     "fbi_code",
+    #     "x_coordinate",
+    #     "y_coordinate",
+    #     "year",
+    #     "updated_on",
+    #     "latitude",
+    #     "longitude",
+    #     "location",
+    # ]
 
     restricted = [
         ":@computed_region_awaf_s7ux",
@@ -55,15 +63,15 @@ def refine_data(extracted_data):
 
     try:
         for d in extracted_data:
-            for (key, value) in d.items() :
+            for (key, value) in d.items():
                 if key in restricted:
                     selected_keys.append(key)
-            
+
             # Iterate over the list and delete corresponding key from dictionary
             for key in selected_keys:
-                if key in d :
+                if key in d:
                     del d[key]
-            
+
             refined_list.append(d)
     except Exception as ex:
         logger.error("Exception during iteration {}".format(ex))
@@ -72,6 +80,10 @@ def refine_data(extracted_data):
 
 
 def write_ndjson(extracted_data):
+    """
+        This function writes the Newline Delimited JSON data
+        to the data folder.
+    """
     refined_data = refine_data(extracted_data)
     is_data_written = write_data(refined_data)
     if is_data_written:
@@ -95,6 +107,7 @@ def write_ndjson(extracted_data):
 
 def write_data(refined_data):
     """
+        Refining step
         This function is used to transform the extracted data 
         from the endpoint with the proper utf-8 encoding. 
     """
