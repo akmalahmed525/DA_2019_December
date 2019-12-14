@@ -91,6 +91,7 @@ def write_ndjson(extracted_data):
         with open("data/chicago_crime_data.json", "r") as read_file:
             data = json.load(read_file)
         result = [json.dumps(record) for record in data]
+        # Converting to Newline Delimited JSON format
         with open("data/chicago_crime_data_nd.json", "w") as obj:
             for i in result:
                 obj.write(i + "\n")

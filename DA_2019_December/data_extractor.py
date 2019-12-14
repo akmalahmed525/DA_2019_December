@@ -3,7 +3,6 @@
     Data Extraction Module
     This module is used to extract the data from the API
 """
-import os
 from app_constants import *
 
 from loguru import logger
