@@ -16,7 +16,7 @@ isort==4.3.21
 lazy-object-proxy==1.4.3
 loguru==0.4.0
 mccabe==0.6.1
-numpy==1.17.4
+numpy==1.22.0
 pandas==0.25.3
 pkg-resources==0.0.0
 protobuf==3.11.1
