@@ -1,7 +1,7 @@
 aiocontextvars==0.2.2
 astroid==2.3.3
 cachetools==3.1.1
-certifi==2019.11.28
+certifi==2022.12.7
 chardet==3.0.4
 contextvars==2.4
 google-api-core==1.14.3
